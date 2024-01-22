@@ -1,3 +1,7 @@
+# Makkah Masjid Admin Portal
+
+This repository contains the administrative portal for the Makkah Masjid mobile app. The admin portal is built using Vite and React to provide a fast and efficient development environment.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
