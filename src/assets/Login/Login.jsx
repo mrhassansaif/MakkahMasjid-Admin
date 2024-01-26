@@ -1,5 +1,9 @@
 import React from 'react'
 import "./Login.css"
+import { CgProfile } from "react-icons/cg";
+import { FaLock } from "react-icons/fa";
+
+
 
 export default function Login() {
   return (
@@ -7,11 +11,12 @@ export default function Login() {
     
     <div className="align">
       <div className="grid">
+        <h2 style={{ color: 'white', letterSpacing: '1.5px' }}>Makkah Masjid Admin</h2>
         <form className="form login">
           <div className="form__field">
             <label htmlFor="login__username">
               <svg className="icon">
-                <use xlinkHref="#icon-user"></use>
+              <CgProfile />
               </svg>
               <span className="hidden">Username</span>
             </label>
@@ -29,7 +34,7 @@ export default function Login() {
           <div className="form__field">
             <label htmlFor="login__password">
               <svg className="icon">
-                <use xlinkHref="#icon-lock"></use>
+                <FaLock />
               </svg>
               <span className="hidden">Password</span>
             </label>
@@ -48,8 +53,7 @@ export default function Login() {
           </div>
         </form>
 
-        <p className="text--center">
-          Not a member? <a href="#">Sign up now</a>
+        <p className="text--center"><a href="#">Forgot Password? Contact Admistrator</a>
           <svg className="icon">
             <use xlinkHref="#icon-arrow-right"></use>
           </svg>

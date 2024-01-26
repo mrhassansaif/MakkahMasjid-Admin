@@ -6,6 +6,7 @@ body {
   overflow-x: hidden;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
+  background-color: #545a5d;
 }
 
 /* Toggle Styles */
@@ -27,7 +28,7 @@ body {
   z-index: 1000;
   position: fixed;
   left: 250px;
-  width: 250px;
+  width: 300px;
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;

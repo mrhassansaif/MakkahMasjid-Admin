@@ -1,9 +1,9 @@
-// import MAsjidLogo from "./assets/Images/MasjidLogo.png";
-// import "./App.css";
+import MAsjidLogo from "./assets/Images/MasjidLogo.png";
+import "./App.css";
 import Login from "./assets/Login/Login";
 import Dashboard from "./assets/Dasboard/Dashboard";
 
-// function App() {
+// function Home() {
 //   return (
 //     <>
 //       <div>
@@ -27,22 +27,14 @@ import Dashboard from "./assets/Dasboard/Dashboard";
 //     </>
 //   );
 // }
-// export default App;
-
-
-// function App() {
-//   return (
-//     <>
-//       <Login />
-//     </>
-//   );
-// }
 
 // export default App;
 function App() {
   return (
     <>
-      <Dashboard />
+    <Login />
+      {/* <Dashboard /> */}
+      
     </>
   );
 }

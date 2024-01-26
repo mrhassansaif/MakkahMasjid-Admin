@@ -1,5 +1,8 @@
 import React from 'react'
 import './Dashboard.css'; // Import the CSS file
+import { FaPray } from "react-icons/fa";
+import { GrSchedules, GrAnnounce } from "react-icons/gr";
+import { TbMessageCircleExclamation } from "react-icons/tb";
 
 
 export default function Dashboard() {
@@ -9,38 +12,29 @@ export default function Dashboard() {
       {/* Sidebar */}
       <div id="sidebar">
         <header>
-          <a href="#">Makkah MAsjid Admin</a>
+          <a href="#">Makkah Masjid Admin</a>
         </header>
         <div className="nav">
           <a href="#">
-            <i className="zmdi zmdi-view-dashboard"></i> Dashboard
+           <FaPray /> &nbsp;&nbsp;&nbsp;Prayer Timing
           </a>
           <a href="#">
-            <i className="zmdi zmdi-link"></i> Shortcuts
+            <GrSchedules /> &nbsp;&nbsp;&nbsp;Ramadan Timing
           </a>
           <a href="#">
-            <i className="zmdi zmdi-widgets"></i> Overview
+            <GrAnnounce /> &nbsp;&nbsp;&nbsp;Events
           </a>
           <a href="#">
-            <i className="zmdi zmdi-calendar"></i> Events
-          </a>
-          <a href="#">
-            <i className="zmdi zmdi-info-outline"></i> About
-          </a>
-          <a href="#">
-            <i className="zmdi zmdi-settings"></i> Services
-          </a>
-          <a href="#">
-            <i className="zmdi zmdi-comment-more"></i> Contact
+          <TbMessageCircleExclamation /> &nbsp;&nbsp;&nbsp;Submissions
           </a>
         </div>
       </div>
       {/* Content */}
       <div id="content">
         <div className="container-fluid">
-          <h1>Simple Sidebar</h1>
+          <h1>Update Prayer Timings</h1>
           <p>
-            Make sure to keep all page content within the <code>#content</code>.
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium impedit fuga consequuntur earum quo enim alias dolorum nisi magni distinctio pariatur, ducimus excepturi laudantium molestias voluptates. Libero doloremque adipisci odio?.
           </p>
         </div>
       </div>
