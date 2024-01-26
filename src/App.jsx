@@ -1,31 +1,50 @@
-import { useState } from 'react'
-import MAsjidLogo from './assets/MasjidLogo.png'
-import './App.css'
+// import MAsjidLogo from "./assets/Images/MasjidLogo.png";
+// import "./App.css";
+import Login from "./assets/Login/Login";
+import Dashboard from "./assets/Dasboard/Dashboard";
 
+// function App() {
+//   return (
+//     <>
+//       <div>
+//         <div>
+//           <a href="https://makkahmasjid.net" target="_blank">
+//             <img src={MAsjidLogo} className="logo" alt="Masjis logo" />
+//           </a>
+//         </div>
+//         <h1>Welcome To Makkah Masjid</h1>
+//         <div className="card">
+//           <button> Login </button>
+//           {/* <p>
+//           Edit <code>src/App.jsx</code> and save to test HMR
+//         </p> */}
+//         </div>
+//         <p className="read-the-docs">
+//           If you arent Suppsode to be here go to Makkamasjid.net
+//         </p>
+//       </div>
+//       <Login />
+//     </>
+//   );
+// }
+// export default App;
+
+
+// function App() {
+//   return (
+//     <>
+//       <Login />
+//     </>
+//   );
+// }
+
+// export default App;
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://makkahmasjid.net" target="_blank">
-          <img src={MAsjidLogo} className="logo" alt="Masjis logo" />
-        </a>
-      </div>
-      <h1>Welcome To Makkah Masjid</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Dashboard />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
