@@ -1,14 +1,16 @@
-/* SidebarDashboard.css */
-
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
 
 body {
   overflow-x: hidden;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
-  background-color: #545a5d;
+  /* background-color: #a6aaab; */
+  margin: 0;
 }
 
+h1 {
+  margin: 0;
+}
 /* Toggle Styles */
 
 #viewport {
@@ -17,6 +19,8 @@ body {
 }
 
 #content {
+  padding-top: 18px;
+  padding-right: 25px;
   width: 100%;
   position: relative;
   margin-right: 0;
@@ -38,8 +42,8 @@ body {
 
 #sidebar header {
   background-color: #263238;
-  font-size: 20px;
-  line-height: 52px;
+  font-size: 25px;
+  line-height: 80px;
   text-align: center;
 }
 
@@ -57,8 +61,9 @@ body {
   background: none;
   border-bottom: 1px solid #455A64;
   color: #CFD8DC;
-  font-size: 14px;
+  font-size: 20px;
   padding: 16px 24px;
+  line-height: 50px;
   text-decoration: none;
   display: block;
 }

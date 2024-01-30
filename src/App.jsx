@@ -1,5 +1,5 @@
 import MAsjidLogo from "./assets/Images/MasjidLogo.png";
-import "./App.css";
+// import "./App.css";
 import Login from "./assets/Login/Login";
 import Dashboard from "./assets/Dasboard/Dashboard";
 
@@ -32,8 +32,8 @@ import Dashboard from "./assets/Dasboard/Dashboard";
 function App() {
   return (
     <>
-    <Login />
-      {/* <Dashboard /> */}
+    {/* <Login /> */}
+      <Dashboard />
       
     </>
   );

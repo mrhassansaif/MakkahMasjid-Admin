@@ -3,6 +3,7 @@ import './Dashboard.css'; // Import the CSS file
 import { FaPray } from "react-icons/fa";
 import { GrSchedules, GrAnnounce } from "react-icons/gr";
 import { TbMessageCircleExclamation } from "react-icons/tb";
+import Submissions from './Submissions';
 
 
 export default function Dashboard() {
@@ -32,10 +33,11 @@ export default function Dashboard() {
       {/* Content */}
       <div id="content">
         <div className="container-fluid">
-          <h1>Update Prayer Timings</h1>
+          {/* <h1>Update Prayer Timings</h1>
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium impedit fuga consequuntur earum quo enim alias dolorum nisi magni distinctio pariatur, ducimus excepturi laudantium molestias voluptates. Libero doloremque adipisci odio?.
-          </p>
+          </p> */}
+          <Submissions />
         </div>
       </div>
     </div>
