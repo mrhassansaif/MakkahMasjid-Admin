@@ -3,10 +3,13 @@ import './Dashboard.css'; // Import the CSS file
 import { FaPray } from "react-icons/fa";
 import { GrSchedules, GrAnnounce } from "react-icons/gr";
 import { TbMessageCircleExclamation } from "react-icons/tb";
+import { CiLogout } from "react-icons/ci";
 import Submissions from './Submissions';
 import NamazTiming from './NamazTimings';
 import RamadanTiming from './RamadanTimings';
 import News from './News';
+import {Button} from 'react-bootstrap';
+
 
 
 export default function Dashboard() {
@@ -31,6 +34,9 @@ export default function Dashboard() {
           <a href="#">
           <TbMessageCircleExclamation /> &nbsp;&nbsp;&nbsp;Submissions
           </a>
+          <a href="#" style={{color : "Red"}}>
+          <CiLogout /> &nbsp;&nbsp;&nbsp;Log Out
+          </a>    
         </div>
       </div>
       {/* Content */}
@@ -40,10 +46,10 @@ export default function Dashboard() {
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium impedit fuga consequuntur earum quo enim alias dolorum nisi magni distinctio pariatur, ducimus excepturi laudantium molestias voluptates. Libero doloremque adipisci odio?.
           </p> */}
-          <Submissions />
+          {/* <Submissions /> */}
           {/* <NamazTiming /> */}
           {/* <RamadanTiming /> */}
-          {/* <News /> */}
+          <News />
         </div>
       </div>
     </div>

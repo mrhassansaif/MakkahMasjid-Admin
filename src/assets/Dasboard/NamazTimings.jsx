@@ -4,12 +4,13 @@ import { Table, Modal, Button, Form } from 'react-bootstrap';
 
 // Dummy Namaz timings data
 const dummyNamazTimings = [
-  { namazName: 'Fajr', timing: '5:30 AM' },
-  { namazName: 'Dhuhr', timing: '12:30 PM' },
-  { namazName: 'Asr', timing: '4:00 PM' },
-  { namazName: 'Maghrib', timing: '6:45 PM' },
-  { namazName: 'Isha', timing: '8:30 PM' },
+  { namazName: 'Fajr', azanTime: '5:30 AM', timing: '5:30 AM' },
+  { namazName: 'Dhuhr', azanTime: '5:30 AM', timing: '12:30 PM' },
+  { namazName: 'Asr', azanTime: '5:30 AM', timing: '4:00 PM' },
+  { namazName: 'Maghrib', azanTime: '5:30 AM', timing: '6:45 PM' },
+  { namazName: 'Isha', azanTime: '5:30 AM',timing: '8:30 PM' },
 ];
+
 
 export default function NamazTiming() {
   const [namazTimings, setNamazTimings] = useState(dummyNamazTimings);
@@ -40,6 +41,8 @@ export default function NamazTiming() {
   };
 
   return (
+    <>
+    <h1>Update Iqamah Timing</h1>
     <div className="container">
       <div className="row">
         <div className="col-md-12">
@@ -47,7 +50,8 @@ export default function NamazTiming() {
             <thead>
               <tr>
                 <th>Namaz</th>
-                <th>Timing</th>
+                <th>Adhaan Timings</th>
+                <th>Iqamah Timing</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -55,6 +59,7 @@ export default function NamazTiming() {
               {namazTimings.map((timing, index) => (
                 <tr key={index}>
                   <td>{timing.namazName}</td>
+                  <td>{timing.azanTime}</td>
                   <td>{timing.timing}</td>
                   <td>
                     <Button variant="primary" onClick={() => handleShowModal(timing)}>
@@ -71,17 +76,21 @@ export default function NamazTiming() {
       {/* Modal for updating Namaz timing */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Update Namaz Timing</Modal.Title>
+          <Modal.Title>Update Iqamah Timing</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="formNamazName">
-              <Form.Label>Namaz</Form.Label>
+              <Form.Label>Namaz Name</Form.Label>
               <Form.Control type="text" placeholder="Enter Namaz Name" value={selectedTiming.namazName || ''} readOnly />
             </Form.Group>
+            <Form.Group controlId="formNamazName">
+              <Form.Label>Adhaan Time</Form.Label>
+              <Form.Control type="text" placeholder="Enter Namaz Name" value={selectedTiming.azanTime || ''} readOnly />
+            </Form.Group>
             <Form.Group controlId="formTiming">
-              <Form.Label>New Timing</Form.Label>
-              <Form.Control type="text" placeholder="Enter New Timing" onChange={(e) => setSelectedTiming({ ...selectedTiming, timing: e.target.value })} />
+              <Form.Label>New Iqamah Timing</Form.Label>
+              <Form.Control type="text" placeholder="Enter New Timing (12:40 PM)" onChange={(e) => setSelectedTiming({ ...selectedTiming, timing: e.target.value })} />
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -95,5 +104,6 @@ export default function NamazTiming() {
         </Modal.Footer>
       </Modal>
     </div>
+    </>
   );
 }
