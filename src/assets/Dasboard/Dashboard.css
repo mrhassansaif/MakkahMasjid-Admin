@@ -4,15 +4,14 @@ body {
   overflow-x: hidden;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
-  /* background-color: #a6aaab; */
   margin: 0;
 }
 
 h1 {
   margin: 0;
 }
-/* Toggle Styles */
 
+/* Toggle Styles */
 #viewport {
   padding-left: 320px;
   transition: all 0.5s ease;
@@ -27,7 +26,6 @@ h1 {
 }
 
 /* Sidebar Styles */
-
 #sidebar {
   z-index: 1000;
   position: fixed;
@@ -47,17 +45,17 @@ h1 {
   text-align: center;
 }
 
-#sidebar header a {
+#sidebar header div, #sidebar header span {
   color: #fff;
   display: block;
   text-decoration: none;
 }
 
-#sidebar header a:hover {
+#sidebar header div:hover, #sidebar header span:hover {
   color: #fff;
 }
 
-#sidebar .nav a {
+#sidebar .nav div {
   background: none;
   border-bottom: 1px solid #455A64;
   color: #CFD8DC;
@@ -66,13 +64,14 @@ h1 {
   line-height: 50px;
   text-decoration: none;
   display: block;
+  cursor: pointer; /* Set the cursor to pointer on hoverable elements */
 }
 
-#sidebar .nav a:hover {
+#sidebar .nav div:hover {
   background: none;
   color: #ECEFF1;
 }
 
-#sidebar .nav a i {
+#sidebar .nav div i {
   margin-right: 16px;
 }

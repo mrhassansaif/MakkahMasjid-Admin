@@ -7,9 +7,6 @@ const dummyNewsList = [
   { id: 1, title: 'Breaking News 1', content: 'This is the content of Breaking News 1.' },
   { id: 2, title: 'Local News 1', content: 'This is the content of Local News 1.' },
   { id: 3, title: 'Technology News 1', content: 'This is the content of Technology News 1.' },
-  { id: 4, title: 'Breaking News 1', content: 'This is the content of Breaking News 1.' },
-  { id: 5, title: 'Local News 1', content: 'This is the content of Local News 1.' },
-  { id: 6, title: 'Technology News 1', content: 'This is the content of Technology News 1.' },
 ];
 
 export default function News() {

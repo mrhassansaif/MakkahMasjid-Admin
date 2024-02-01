@@ -4,33 +4,40 @@ import { Form, Button, Alert } from "react-bootstrap";
 import "./login.css";
 import BackgroundImage from "../Images/background.png";
 import Logo from "../Images/MasjidLogo.png";
+import {auth, signInWithEmailAndPassword } from "../Firebase/FirebaseConfig";
+import { Link, Navigate } from 'react-router-dom';
+
 
 const Login = () => {
+  const [Validate, setValidate] = useState(false)
   const [inputUsername, setInputUsername] = useState("");
   const [inputPassword, setInputPassword] = useState("");
-
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // const auth = getAuth(); // Initialize Firebase Auth
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-    await delay(500);
-    console.log(`Username :${inputUsername}, Password :${inputPassword}`);
-    if (inputUsername !== "admin" || inputPassword !== "admin") {
+
+    try {
+      await signInWithEmailAndPassword(auth, inputUsername, inputPassword);
+      // If sign-in is successful, you can redirect or perform other actions here
+      console.log("User signed in successfully");
+      setValidate(true)
+    } catch (error) {
+      // Handle authentication errors
+      console.error("Authentication error:", error);
       setShow(true);
     }
+
     setLoading(false);
   };
 
-  const handlePassword = () => {};
-
-  function delay(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-
   return (
-    <div
+
+    <>{Validate ? (<Navigate to='/dashboard' />) : (<div
       className="sign-in__wrapper"
       style={{ backgroundImage: `url(${BackgroundImage})` }}
     >
@@ -45,8 +52,8 @@ const Login = () => {
           alt="logo"
         />
         <div className="h4 mb-2 text-center">Makkah Masjid Admin LogIn</div>
-        {/* ALert */}
-        {show ? (
+        {/* Alert */}
+        {show && (
           <Alert
             className="mb-2"
             variant="danger"
@@ -55,9 +62,8 @@ const Login = () => {
           >
             Incorrect username or password.
           </Alert>
-        ) : (
-          <div />
         )}
+        {/* Form inputs */}
         <Form.Group className="mb-2" controlId="username">
           <Form.Label>Username</Form.Label>
           <Form.Control
@@ -78,9 +84,7 @@ const Login = () => {
             required
           />
         </Form.Group>
-        <Form.Group className="mb-2" controlId="checkbox">
-          <Form.Check type="checkbox" label="Remember me" />
-        </Form.Group>
+        {/* Submit button */}
         {!loading ? (
           <Button className="w-100" variant="primary" type="submit">
             Log In
@@ -90,20 +94,15 @@ const Login = () => {
             Logging In...
           </Button>
         )}
+        {/* Forgot password link */}
         <div className="d-grid justify-content-end">
-          <Button
-            className="text-muted px-0"
-            variant="link"
-          >
-            Forgot password? Contact Admistrator
+          <Button className="text-muted px-0" variant="link">
+            Forgot password? Contact Administrator
           </Button>
         </div>
       </Form>
-      {/* Footer */}
-      {/* <div className="w-100 mb-2 position-absolute bottom-0 start-50 translate-middle-x text-white text-center">
-        Made by Hendrik C | &copy;2022
-      </div> */}
-    </div>
+    </div>)} </>
+    
   );
 };
 
