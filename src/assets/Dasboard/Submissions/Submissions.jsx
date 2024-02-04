@@ -105,6 +105,34 @@ const dummySubmissions = [
     message:
       "Another submission here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dicta omnis nisi sapiente necessitatibus, alias commodi, consectetur cupiditate repellat repudiandae delectus, beatae sit? Deleniti qui, esse eveniet doloribus ad odio.",
   },
+  {
+    id: 4,
+    name: "Jane Doe",
+    email: "jane@example.com",
+    message:
+      "Another submission here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dicta omnis nisi sapiente necessitatibus, alias commodi, consectetur cupiditate repellat repudiandae delectus, beatae sit? Deleniti qui, esse eveniet doloribus ad odio.",
+  },
+  {
+    id: 4,
+    name: "Jane Doe",
+    email: "jane@example.com",
+    message:
+      "Another submission here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dicta omnis nisi sapiente necessitatibus, alias commodi, consectetur cupiditate repellat repudiandae delectus, beatae sit? Deleniti qui, esse eveniet doloribus ad odio.",
+  },
+  {
+    id: 4,
+    name: "Jane Doe",
+    email: "jane@example.com",
+    message:
+      "Another submission here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dicta omnis nisi sapiente necessitatibus, alias commodi, consectetur cupiditate repellat repudiandae delectus, beatae sit? Deleniti qui, esse eveniet doloribus ad odio.",
+  },
+  {
+    id: 4,
+    name: "Jane Doe",
+    email: "jane@example.com",
+    message:
+      "Another submission here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dicta omnis nisi sapiente necessitatibus, alias commodi, consectetur cupiditate repellat repudiandae delectus, beatae sit? Deleniti qui, esse eveniet doloribus ad odio.",
+  },
   // Add more dummy submissions as needed
 ];
 
