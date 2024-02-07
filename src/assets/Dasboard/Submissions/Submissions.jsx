@@ -1,186 +1,131 @@
-// import React from "react";
-// import Accordion from "react-bootstrap/Accordion";
+import React, { useState, useEffect } from 'react';
+import { Button, Modal, Table } from 'react-bootstrap';
 
-// export default function Submissions() {
-//   return (
-//     <div>
-//       <h1 style={{ marginBottom: "10px" }}>Submissions</h1>
-//       <Accordion defaultActiveKey="0">
-//         <Accordion.Item eventKey="0">
-//           <Accordion.Header>Submission From &nbsp; <b> John Doe</b></Accordion.Header>
-//           <Accordion.Body>
-//             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-//             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-//             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-//             aliquip ex ea commodo consequat. Duis aute irure dolor in
-//             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-//             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-//             culpa qui officia deserunt mollit anim id est laborum.
-//           </Accordion.Body>
-//         </Accordion.Item>
-//         <Accordion.Item eventKey="1">
-//           <Accordion.Header>Submission From &nbsp; <b> Jane Doe</b></Accordion.Header>
-//           <Accordion.Body>
-//             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-//             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-//             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-//             aliquip ex ea commodo consequat. Duis aute irure dolor in
-//             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-//             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-//             culpa qui officia deserunt mollit anim id est laborum.
-//           </Accordion.Body>
-//         </Accordion.Item>
-//         <Accordion.Item eventKey="2">
-//           <Accordion.Header>Submission From &nbsp; <b> Jane Doe</b></Accordion.Header>
-//           <Accordion.Body>
-//             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-//             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-//             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-//             aliquip ex ea commodo consequat. Duis aute irure dolor in
-//             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-//             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-//             culpa qui officia deserunt mollit anim id est laborum.
-//           </Accordion.Body>
-//         </Accordion.Item>
-//         <Accordion.Item eventKey="3">
-//           <Accordion.Header>Submission From &nbsp; <b> Jane Doe</b></Accordion.Header>
-//           <Accordion.Body>
-//             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-//             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-//             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-//             aliquip ex ea commodo consequat. Duis aute irure dolor in
-//             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-//             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-//             culpa qui officia deserunt mollit anim id est laborum.
-//           </Accordion.Body>
-//         </Accordion.Item>
-//         <Accordion.Item eventKey="4">
-//           <Accordion.Header>Submission From &nbsp; <b> Jane Doe</b></Accordion.Header>
-//           <Accordion.Body>
-//             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-//             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-//             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-//             aliquip ex ea commodo consequat. Duis aute irure dolor in
-//             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-//             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-//             culpa qui officia deserunt mollit anim id est laborum.
-//           </Accordion.Body>
-//         </Accordion.Item>
-//       </Accordion>
-//     </div>
-//   );
-// }
-
-import React, { useState, useEffect } from "react";
-// import axios from 'axios'; // Assuming you use Axios for HTTP requests
-import "./Submissions.css";
-import { Table } from "react-bootstrap"; // Import Table component from Bootstrap
-
-const dummySubmissions = [
-  {
-    id: 1,
-    name: "John Doe",
-    email: "john@example.com",
-    message:
-      "This is the first submission. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dicta omnis nisi sapiente necessitatibus, alias commodi, consectetur cupiditate repellat repudiandae delectus, beatae sit? Deleniti qui, esse eveniet doloribus ad odio. ",
+// Assume contact form submissions data structure
+const mockSubmissions = [
+  { 
+    id: 1, 
+    name: 'Alice Johnson', 
+    email: 'alice@example.com', 
+    number: '555 123 4567', 
+    message: 'Thank you for your wonderful service. I appreciate the efforts of the mosque community.',
+    date: '2024-02-10' 
   },
-  {
-    id: 2,
-    name: "Jane Doe",
-    email: "jane@example.com",
-    message:
-      "Another submission here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dicta omnis nisi sapiente necessitatibus, alias commodi, consectetur cupiditate repellat repudiandae delectus, beatae sit? Deleniti qui, esse eveniet doloribus ad odio.",
+  { 
+    id: 2, 
+    name: 'Bob Smith', 
+    email: 'bob@example.com', 
+    number: '555 987 6543', 
+    message: 'I would like to inquire about volunteering opportunities at the mosque. Can someone contact me?',
+    date: '2024-02-09' 
   },
-  {
-    id: 3,
-    name: "Jane Doe",
-    email: "jane@example.com",
-    message:
-      "Another submission here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dicta omnis nisi sapiente necessitatibus, alias commodi, consectetur cupiditate repellat repudiandae delectus, beatae sit? Deleniti qui, esse eveniet doloribus ad odio.",
+  { 
+    id: 3, 
+    name: 'Emma Davis', 
+    email: 'emma@example.com', 
+    number: '555 234 5678', 
+    message: 'Hello, I have a suggestion for the upcoming event. Could you please get in touch?',
+    date: '2024-02-08' 
   },
-  {
-    id: 4,
-    name: "Jane Doe",
-    email: "jane@example.com",
-    message:
-      "Another submission here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dicta omnis nisi sapiente necessitatibus, alias commodi, consectetur cupiditate repellat repudiandae delectus, beatae sit? Deleniti qui, esse eveniet doloribus ad odio.",
+  { 
+    id: 4, 
+    name: 'David Wilson', 
+    email: 'david@example.com', 
+    number: '555 876 5432', 
+    message: 'I attended the last event and wanted to express my gratitude. It was a memorable experience.',
+    date: '2024-02-07' 
   },
-  {
-    id: 4,
-    name: "Jane Doe",
-    email: "jane@example.com",
-    message:
-      "Another submission here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dicta omnis nisi sapiente necessitatibus, alias commodi, consectetur cupiditate repellat repudiandae delectus, beatae sit? Deleniti qui, esse eveniet doloribus ad odio.",
+  { 
+    id: 5, 
+    name: 'Sophia Miller', 
+    email: 'sophia@example.com', 
+    number: '555 345 6789', 
+    message: 'I have a question about the mosque\'s community programs. Can someone provide more information?',
+    date: '2024-02-06' 
   },
-  {
-    id: 4,
-    name: "Jane Doe",
-    email: "jane@example.com",
-    message:
-      "Another submission here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dicta omnis nisi sapiente necessitatibus, alias commodi, consectetur cupiditate repellat repudiandae delectus, beatae sit? Deleniti qui, esse eveniet doloribus ad odio.",
-  },
-  {
-    id: 4,
-    name: "Jane Doe",
-    email: "jane@example.com",
-    message:
-      "Another submission here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dicta omnis nisi sapiente necessitatibus, alias commodi, consectetur cupiditate repellat repudiandae delectus, beatae sit? Deleniti qui, esse eveniet doloribus ad odio.",
-  },
-  {
-    id: 4,
-    name: "Jane Doe",
-    email: "jane@example.com",
-    message:
-      "Another submission here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dicta omnis nisi sapiente necessitatibus, alias commodi, consectetur cupiditate repellat repudiandae delectus, beatae sit? Deleniti qui, esse eveniet doloribus ad odio.",
-  },
-  // Add more dummy submissions as needed
+  // Add more submissions as needed
 ];
 
-export default function Submissions() {
-  const [submissions, setSubmissions] = useState(dummySubmissions);
 
-  // Fetch submissions data from your backend (replace 'your-api-endpoint' with the actual endpoint)
-  // useEffect(() => {
-  //   axios.get('your-api-endpoint')
-  //     .then(response => {
-  //       setSubmissions(response.data);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error fetching submissions:', error);
-  //     });
-  // }, []); // Empty dependency array ensures the effect runs once when the component mounts
+
+const Submissions = () => {
+  const [submissions, setSubmissions] = useState([]);
+  const [selectedSubmission, setSelectedSubmission] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    // Fetch submissions from your database and update the state
+    // Replace this with your actual API or database call
+    setSubmissions(mockSubmissions);
+  }, []);
+
+  const handleSubmissionClick = (submission) => {
+    setSelectedSubmission(submission);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setSelectedSubmission(null);
+    setShowModal(false);
+  };
 
   return (
-    <>
-      <h1> Form Submissions</h1>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Message</th>
-                  {/* Add more columns based on your data */}
-                </tr>
-              </thead>
-              <tbody>
-                {submissions.map((submission) => (
-                  <tr key={submission.id}>
-                    <td>{submission.id}</td>
-                    <td>{submission.name}</td>
-                    <td>{submission.email}</td>
-                    <td>{submission.message}</td>
-                    {/* Add more cells based on your data */}
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          </div>
-        </div>
-      </div>
-    </>
+    <div className="container mt-4">
+      <h2>Submission Inbox</h2>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {submissions.map((submission) => (
+            <tr key={submission.id}>
+              <td>{submission.id}</td>
+              <td>{submission.date}</td>
+              <td>{submission.name}</td>
+              <td>{submission.email}</td>
+              <td>{submission.number}</td>
+              <td>
+                <Button variant="info" onClick={() => handleSubmissionClick(submission)}>
+                  View Details
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+
+      {/* Submission Details Modal */}
+      <Modal show={showModal} onHide={closeModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Submission Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedSubmission && (
+            <>
+              <p><strong>Date:</strong> {selectedSubmission.date}</p>
+              <p><strong>Name:</strong> {selectedSubmission.name}</p>
+              <p><strong>Email:</strong> {selectedSubmission.email}</p>
+              <p><strong>Contact Number:</strong> {selectedSubmission.number}</p>
+              <p><strong>Message:</strong> {selectedSubmission.message}</p>
+            </>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
   );
-}
+};
+
+export default Submissions;
+

@@ -52,23 +52,14 @@ export default function Dashboard() {
     setSelectedComponent(component);
   };
 
-  // const handleLogout = async () => {
-  //   try {
-  //     await signOut(auth);
-  //     window.location.href = "/login"; // Redirect to the login screen
-  //   } catch (error) {
-  //     console.error("Error during logout:", error.message);
-  //   }
-  // };
-
-  const handleLogout = () => {
+   const handleLogout = () => {
     setShowLogoutModal(true);
   };
 
   const confirmLogout = async () => {
     try {
       await signOut(auth);
-      window.location.href = "/login"; // Redirect to the login screen
+      setIsUser(false); // Redirect to the login screen
     } catch (error) {
       console.error("Error during logout:", error.message);
     }
@@ -146,7 +137,7 @@ export default function Dashboard() {
   </>
         
       ) : (
-        <Navigate to='/login' />
+        <Navigate to='/' />
       )}
     </>
   );
