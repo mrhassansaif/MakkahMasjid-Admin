@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Ramadantimings.css";
 import { Table, Modal, Button, Form } from "react-bootstrap";
+import { db, doc, setDoc } from "../../Firebase/FirebaseConfig"; 
 
 // Dummy Ramadan timings data
 const dummyRamadanTimings = [
@@ -62,11 +63,19 @@ export default function RamadanTiming() {
     setShowModal(false);
   };
 
-  const handleUpdateTiming = () => {
-    // Implement the logic to update Ramadan timing in the backend
-    // After successful update, close the modal and refresh the timings
-    // Example: axios.put('your-update-endpoint', selectedTiming).then(...)
-    handleCloseModal();
+  const handleUpdateTiming = async () => {
+    console.log("handleUpdateTiming called");
+    try {
+      // Add a new document in collection "RamadanTimings" with a specific document ID "2024"
+      await setDoc(doc(db, "RamadanTimings", "2024"), {
+        timings: dummyRamadanTimings // Store dummyRamadanTimings data under a field named "timings"
+      });
+      console.log("Data added to Firestore:", dummyRamadanTimings);
+      handleCloseModal();
+    } catch (error) {
+      // Handle errors
+      console.error("Error adding data to Firestore:", error);
+    }
   };
 
   return (

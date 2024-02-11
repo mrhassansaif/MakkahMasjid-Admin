@@ -9,7 +9,7 @@ import NamazTiming from "./NamazTimings/NamazTimings";
 import RamadanTiming from "./RamadanTimings/RamadanTimings";
 import News from "./News/News";
 import { Button, Modal } from "react-bootstrap";
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import { auth, onAuthStateChanged, signOut } from "../Firebase/FirebaseConfig";
 import Spinner from "react-bootstrap/Spinner";

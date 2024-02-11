@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./News.css";
 import { ListGroup, Button, Modal, Form } from 'react-bootstrap';
+import { db, doc, setDoc } from "../../Firebase/FirebaseConfig"; 
 
 // Dummy news data
 const dummyNewsList = [
@@ -28,7 +29,19 @@ export default function News() {
     setShowModal(false);
   };
 
-  const handleAddNews = () => {
+  const handleAddNews = async () => {
+    console.log("HandleAddNews called");
+    try {
+      // Add a new document in collection "RamadanTimings" with a specific document ID "2024"
+      await setDoc(doc(db, "News", "List"), {
+        newNews, // Store dummyRamadanTimings data under a field named "timings"
+      });
+      console.log("Data added to Firestore:", newNews);
+      // handleCloseModal();
+    } catch (error) {
+      // Handle errors
+      console.error("Error adding data to Firestore:", error);
+    }
     // Implement the logic to add news to the backend
     // After successful addition, close the modal and refresh the news list
     // Example: axios.post('your-add-endpoint', newNews).then(...)
