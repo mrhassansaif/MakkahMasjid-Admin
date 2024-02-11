@@ -15,6 +15,7 @@ const NotFound = () => (
   <div style={{ marginLeft: "30px", marginTop: "30px" }}>
     <h2>404 - Not Found</h2>
     <p>Sorry, the requested page does not exist or is forbidden.</p>
+    
   </div>
 );
 
