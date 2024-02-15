@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./NamazTimings.css";
 import { Table, Modal, Button, Form } from 'react-bootstrap';
+import { db, doc, setDoc } from '../../Firebase/FirebaseConfig'; // Import Firestore functions
 
 // Dummy Namaz timings data
 const dummyNamazTimings = [
@@ -12,13 +13,11 @@ const dummyNamazTimings = [
   { namazName: 'Jummah', azanTime: '5:30 AM',timing: '8:30 PM' },
 ];
 
-
 export default function NamazTiming() {
   const [namazTimings, setNamazTimings] = useState(dummyNamazTimings);
   const [showModal, setShowModal] = useState(false);
   const [selectedTiming, setSelectedTiming] = useState({});
 
-  // Fetch Namaz timings from your backend (replace 'your-api-endpoint' with the actual endpoint)
   useEffect(() => {
     // For testing purposes, using dummy data instead of API call
     setNamazTimings(dummyNamazTimings);
@@ -34,12 +33,25 @@ export default function NamazTiming() {
     setShowModal(false);
   };
 
-  const handleUpdateTiming = () => {
-    // Implement the logic to update Namaz timing in the backend
-    // After successful update, close the modal and refresh the timings
-    // Example: axios.put('your-update-endpoint', selectedTiming).then(...)
-    handleCloseModal();
+  const handleUpdateTiming = async () => {
+    try {
+      // Prepare data to be saved in Firestore
+      const namazTimingsData = namazTimings.map(({ namazName, timing }) => ({
+        namazName,
+        timing
+      }));
+  
+      // Add a new document in collection "NamazTimings" with a specific document ID "2024"
+      await setDoc(doc(db, "NamazTimings", "2024"), {
+        timings: namazTimingsData // Store namazName and timing data
+      });
+      console.log("Data added to Firestore:", namazTimingsData);
+      handleCloseModal();
+    } catch (error) {
+      console.error("Error adding data to Firestore:", error);
+    }
   };
+  
 
   return (
     <>
