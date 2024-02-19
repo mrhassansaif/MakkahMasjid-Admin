@@ -2,76 +2,96 @@
 
 /* Optional: Add some general styles for the container */
 .container {
-    margin-top: 20px;
-  }
-  
-  /* Style for the table */
-  .table {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  /* Style for table header */
-  .table thead {
-    background-color: #3498db;
-    color: #fff;
-  }
-  
-  /* Style for table cells */
-  .table tbody tr {
-    background-color: #f8f9fa;
-  }
-  
-  /* Style for buttons in the table */
-  .table button {
-    background-color: #28a745;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  /* Hover effect for buttons */
-  .table button:hover {
-    background-color: #218838;
-  }
-  
-  /* Style for modal header */
-  .modal-header {
-    background-color: #3498db;
-    color: #fff;
-    border-bottom: none;
-  }
-  
-  /* Style for modal body */
-  .modal-body {
-    padding: 20px;
-  }
-  
-  /* Style for modal footer */
-  .modal-footer {
-    border-top: none;
-  }
-  
-  /* Style for form controls in the modal */
-  .form-control {
-    margin-bottom: 15px;
-  }
-  
-  /* Style for close button in modal */
-  .close {
-    color: #fff;
-  }
-  
-  /* Style for modal primary button */
-  .modal-footer .btn-primary {
-    background-color: #28a745;
-    border: none;
-    color: #fff;
-  }
-  
-  /* Hover effect for modal primary button */
-  .modal-footer .btn-primary:hover {
-    background-color: #218838;
-  }
-  
+  margin-top: 20px;
+}
+
+/* Style for the table */
+.table {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Style for table header */
+.table thead {
+  background-color: #3498db;
+  color: #fff;
+}
+
+/* Style for table cells */
+.table tbody tr {
+  background-color: #f8f9fa;
+}
+
+/* Style for buttons in the table */
+.table button {
+  background-color: #28a745;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Hover effect for buttons */
+.table button:hover {
+  background-color: #218838;
+}
+
+/* Style for modal header */
+.modal-header {
+  background-color: #3498db;
+  color: #fff;
+  border-bottom: none;
+}
+
+/* Style for modal body */
+.modal-body {
+  padding: 20px;
+}
+
+/* Style for modal footer */
+.modal-footer {
+  border-top: none;
+}
+
+/* Style for form controls in the modal */
+.form-control {
+  margin-bottom: 15px;
+}
+
+/* Style for close button in modal */
+.close {
+  color: #fff;
+}
+
+/* Style for modal primary button */
+.modal-footer .btn-primary {
+  background-color: #28a745;
+  border: none;
+  color: #fff;
+}
+
+/* Hover effect for modal primary button */
+.modal-footer .btn-primary:hover {
+  background-color: #218838;
+}
+
+/* Style for input fields in the main table */
+.table tbody input[type="text"] {
+  border: none; /* Remove border */
+  background: none; /* Remove background color */
+  /* width: 50%; Make the input fields take the full width */
+  text-align: left; /* Center-align text */
+  outline: none; /* Remove outline */
+}
+
+/* Style for input fields in the modal table */
+.modal-body input[type="text"] {
+  border: 1px solid #ccc; /* Add border */
+  background-color: #ff0000; /* Add background color */
+  /* width: 50%; Adjust width to accommodate border */
+  text-align: left; /* Center-align text */
+  outline: none; /* Remove outline */
+  border-radius: 4px; /* Add border radius */
+  padding: 6px; /* Add padding */
+  margin-bottom: 15px; /* Add bottom margin */
+}
