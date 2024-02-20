@@ -14,20 +14,18 @@ const dummyNamazTimings = [
 ];
 
 export default function NamazTiming() {
-  // const [namazTimings, setNamazTimings] = useState(dummyNamazTimings);
   const [showModal, setShowModal] = useState(false);
   const [selectedTiming, setSelectedTiming] = useState({});
-
-  const [namazTimings, setNamazTimings] = useState([]); // Initialize namazTimings state as an empty array
+  const [namazTimings, setNamazTimings] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const docSnap = await getDoc(doc(db, 'NamazTimings', '2024')); // Fetch document from Firestore
+        const docSnap = await getDoc(doc(db, 'NamazTimings', '2024'));
         if (docSnap.exists()) {
           const data = docSnap.data();
           if (data && data.timings) {
-            setNamazTimings(data.timings); // Update namazTimings state with data fetched from Firestore
+            setNamazTimings(data.timings);
           }
         }
       } catch (error) {
@@ -35,36 +33,33 @@ export default function NamazTiming() {
       }
     };
 
-    fetchData(); // Call the fetchData function when component mounts
-  }, []); // Add empty dependency array to ensure useEffect only runs once on mount
+    fetchData();
+  }, []);
 
-
-  const handleShowModal = () => {
-    setSelectedTiming(namazTimings[0]); // Initialize selectedTiming with the first item from the array
+  const handleShowModal = (timing) => {
+    setSelectedTiming(timing);
     setShowModal(true);
   };
 
   const handleCloseModal = () => {
+    setSelectedTiming({});
     setShowModal(false);
   };
 
   const handleUpdateTiming = async () => {
     try {
-      // Update the main table with the edited timing
       const updatedTimings = namazTimings.map(timing =>
         timing.namazName === selectedTiming.namazName ? selectedTiming : timing
       );
       setNamazTimings(updatedTimings);
 
-      // Prepare data to be saved in Firestore
       const namazTimingsData = updatedTimings.map(({ namazName, timing }) => ({
         namazName,
         timing
       }));
   
-      // Add a new document in collection "NamazTimings" with a specific document ID "2024"
       await setDoc(doc(db, "NamazTimings", "2024"), {
-        timings: namazTimingsData // Store namazName and timing data
+        timings: namazTimingsData
       });
       console.log("Data added to Firestore:", namazTimingsData);
       handleCloseModal();
@@ -90,6 +85,7 @@ export default function NamazTiming() {
                   <th>Namaz</th>
                   <th>Adhaan Timings</th>
                   <th>Iqamah Timing</th>
+                  <th>Action</th> {/* New column for action buttons */}
                 </tr>
               </thead>
               <tbody>
@@ -104,16 +100,13 @@ export default function NamazTiming() {
                         onChange={(e) => handleTimingChange(e, timing.namazName)}
                       />
                     </td>
+                    <td> {/* Action button for each namaz timing */}
+                      <Button variant="primary" onClick={() => handleShowModal(timing)}>
+                        Update
+                      </Button>
+                    </td>
                   </tr>
                 ))}
-                <tr>
-                  <td colSpan="2"></td>
-                  <td>
-                    <Button variant="primary" onClick={handleShowModal}>
-                      Update
-                    </Button>
-                  </td>
-                </tr>
               </tbody>
             </Table>
           </div>
@@ -126,28 +119,21 @@ export default function NamazTiming() {
           <Modal.Title>Update Iqamah Timing</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Namaz</th>
-                <th>Iqamah Timing</th>
-              </tr>
-            </thead>
-            <tbody>
-              {namazTimings.map((timing, index) => (
-                <tr key={index}>
-                  <td>{timing.namazName}</td>
-                  <td>
-                    <input
-                      type="text"
-                      value={selectedTiming.timing}
-                      onChange={(e) => handleTimingChange(e, timing.namazName)}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+          <Form>
+            <Form.Group controlId="formNamazName">
+              <Form.Label>Namaz Name</Form.Label>
+              <Form.Control type="text" placeholder="Namaz Name" value={selectedTiming.namazName || ''} readOnly />
+            </Form.Group>
+            <Form.Group controlId="formTiming">
+              <Form.Label>New Iqamah Timing</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter New Timing (12:40 PM)"
+                value={selectedTiming.timing || ''}
+                onChange={(e) => setSelectedTiming({ ...selectedTiming, timing: e.target.value })}
+              />
+            </Form.Group>
+          </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>

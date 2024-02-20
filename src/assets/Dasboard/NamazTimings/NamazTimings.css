@@ -87,7 +87,6 @@
 /* Style for input fields in the modal table */
 .modal-body input[type="text"] {
   border: 1px solid #ccc; /* Add border */
-  background-color: #ff0000; /* Add background color */
   /* width: 50%; Adjust width to accommodate border */
   text-align: left; /* Center-align text */
   outline: none; /* Remove outline */
