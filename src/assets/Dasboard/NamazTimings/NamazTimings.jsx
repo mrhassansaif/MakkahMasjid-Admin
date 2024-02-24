@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Modal, Button, Form } from 'react-bootstrap';
+import axios from 'axios'; // Import Axios for HTTP requests
 import { db, doc, setDoc, getDoc } from '../../Firebase/FirebaseConfig'; // Import Firestore functions
-import './NamazTimings.css';
-
-// Dummy Namaz timings data
-const dummyNamazTimings = [
-  { namazName: 'Fajr', azanTime: '5:30 AM', timing: '5:30 AM' },
-  { namazName: 'Dhuhr', azanTime: '5:30 AM', timing: '12:30 PM' },
-  { namazName: 'Asr', azanTime: '5:30 AM', timing: '4:00 PM' },
-  { namazName: 'Maghrib', azanTime: '5:30 AM', timing: '6:45 PM' },
-  { namazName: 'Isha', azanTime: '5:30 AM', timing: '8:30 PM' },
-  { namazName: 'Jummah', azanTime: '5:30 AM', timing: '8:30 PM' },
-];
+import './NamazTimings.css'; 
 
 export default function NamazTiming() {
   const [showModal, setShowModal] = useState(false);
   const [selectedTiming, setSelectedTiming] = useState({});
   const [namazTimings, setNamazTimings] = useState([]);
+  const [azanTimings, setAzanTimings] = useState({}); // State to hold fetched Azan timings
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Fetch Azan timings from the AlAdhan API
+        const response = await axios.get('https://api.aladhan.com/v1/timings/2024-02-24?latitude=32.931764267092596&longitude=-96.67948816258345&method=1&school=1');
+        const { data } = response.data;
+        const formattedAzanTimings = formatAzanTimings(data.timings);
+        setAzanTimings(formattedAzanTimings);
+        
+        // Fetch Namaz timings from Firestore
         const docSnap = await getDoc(doc(db, 'NamazTimings', '2024'));
         if (docSnap.exists()) {
           const data = docSnap.data();
@@ -29,12 +28,27 @@ export default function NamazTiming() {
           }
         }
       } catch (error) {
-        console.error('Error fetching data from Firestore:', error);
+        console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
   }, []);
+
+  const formatAzanTimings = (azanTimings) => {
+    const formattedTimings = {};
+    for (const [key, value] of Object.entries(azanTimings)) {
+      formattedTimings[key] = convertTo12HourFormat(value);
+    }
+    return formattedTimings;
+  };
+
+  const convertTo12HourFormat = (time24) => {
+    const [hours, minutes] = time24.split(':');
+    const period = hours >= 12 ? 'PM' : 'AM';
+    const hours12 = (hours % 12) || 12;
+    return `${hours12}:${minutes} ${period}`;
+  };
 
   const handleShowModal = (timing) => {
     setSelectedTiming(timing);
@@ -92,7 +106,7 @@ export default function NamazTiming() {
                 {namazTimings.map((timing, index) => (
                   <tr key={index}>
                     <td>{timing.namazName}</td>
-                    <td>{dummyNamazTimings.find(item => item.namazName === timing.namazName)?.azanTime}</td>
+                    <td>{azanTimings[timing.namazName]}</td> {/* Display Azan timing fetched from API */}
                     <td>
                       <input
                         type="text"
