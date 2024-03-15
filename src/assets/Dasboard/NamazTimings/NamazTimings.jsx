@@ -14,10 +14,14 @@ export default function NamazTiming() {
     const fetchData = async () => {
       try {
         // Fetch Azan timings from the AlAdhan API
-        const response = await axios.get('https://api.aladhan.com/v1/timings/2024-02-24?latitude=32.931764267092596&longitude=-96.67948816258345&method=1&school=1');
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().split('T')[0]; // Format date to YYYY-MM-DD
+        // const apiURL = 'https://api.aladhan.com/v1/timings/2024-02-24?latitude=32.931764267092596&longitude=-96.67948816258345&method=1&school=1'
+        const response = await axios.get('https://api.aladhan.com/v1/timings/' + formattedDate + '?latitude=32.931764267092596&longitude=-96.67948816258345&method=1&school=1');
         const { data } = response.data;
         const formattedAzanTimings = formatAzanTimings(data.timings);
         setAzanTimings(formattedAzanTimings);
+        console.log(formattedAzanTimings);
         
         // Fetch Namaz timings from Firestore
         const docSnap = await getDoc(doc(db, 'NamazTimings', '2024'));

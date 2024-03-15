@@ -1,7 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, deleteDoc, onSnapshot} from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, deleteDoc, onSnapshot } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL  } from "firebase/storage";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -12,7 +14,7 @@ const firebaseConfig = {
   projectId: "makkahmasjid-73fec",
   storageBucket: "makkahmasjid-73fec.appspot.com",
   messagingSenderId: "612902709295",
-  appId: "1:612902709295:web:906dd9e323318563253eda"
+  appId: "1:612902709295:web:906dd9e323318563253eda",
 };
 
 // Initialize Firebase
@@ -21,4 +23,4 @@ const auth = getAuth(app);
 const db = getFirestore()
 
 // Exporting Firebase
-export {app, auth, createUserWithEmailAndPassword, doc, db, getDoc, setDoc, signInWithEmailAndPassword, deleteDoc, onSnapshot, onAuthStateChanged, signOut, collection };
+export {app, auth, createUserWithEmailAndPassword, doc, db, getDoc, setDoc, signInWithEmailAndPassword, deleteDoc, onSnapshot, onAuthStateChanged, signOut, getDownloadURL , collection, getStorage, ref, uploadBytes };

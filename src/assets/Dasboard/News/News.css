@@ -73,3 +73,9 @@
     border-color: #545b62;
   }
   
+  .news-image {
+    max-width: 100%; /* Limit image width to container width */
+    max-height: 200px; /* Set maximum height for the image */
+    object-fit: cover; /* Ensure the entire image is visible within the specified dimensions */
+  }
+  
